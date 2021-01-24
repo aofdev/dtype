@@ -113,3 +113,9 @@ func TestDefaultJSONUnstructuredWithNullableReturnNull(t *testing.T) {
 	assert.Nil(t, err)
 	assert.JSONEq(t, want, got)
 }
+
+func TestDefaultJSONUnstructuredWithNullableErrorUnmarshal(t *testing.T) {
+	inputJSON := `{"name":{"first":"Janet","last":"Prichard","age":47}`
+	inputKey := "country"
+	assert.Panics(t, func() { DefaultJSONUnstructuredWithNullable(inputJSON, inputKey) })
+}
